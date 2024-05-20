@@ -1,3 +1,6 @@
+[![](https://visitcount.itsvg.in/api?id=ManojKumar2920/Kairos-Chatbot&icon=5&color=6)](https://visitcount.itsvg.in)
+
+
 # Kairos AI
 
 Welcome to **Kairos AI**, an open-source AI chatbot designed to assist with programming-related questions and problems. Kairos AI leverages the powerful Gemini language model and is built with Next.js for a seamless user experience.
