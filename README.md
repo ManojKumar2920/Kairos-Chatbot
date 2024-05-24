@@ -1,9 +1,6 @@
-<a href="https://github.com/ManojKumar2920/Kairos-Chatbot">
-  <img
-    src="https://img.shields.io/badge/%E2%9C%93-Social%20Preview-blue"
-    alt="This Repository uses a generated Social Preview from @ManojKumar2920/Kairos/Chatbot"
-  />
-</a>
+<meta property="og:image" content="https://socialify.git.ci/ManojKumar2920/Kairos-Chatbot/png?description=1&descriptionEditable=Kairos%20AI%2C%20an%20open-source%20AI%20chatbot%20designed%20to%20assist%20with%20programming-related%20questions%20and%20problems.&font=Inter&forks=1&issues=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light" />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="640" />
 
 # Kairos AI
 
