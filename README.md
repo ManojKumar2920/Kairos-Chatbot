@@ -1,4 +1,4 @@
-<img src="https://socialify.git.ci/ManojKumar2920/Kairos-Chatbot/image?description=1&descriptionEditable=Kairos%20AI%2C%20an%20open-source%20AI%20chatbot%20designed%20to%20assist%20with%20programming-related%20questions%20and%20problems.&font=Inter&forks=1&issues=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light" alt="Kairos-Chatbot" width="640" height="320" />
+<img src="https://socialify.git.ci/ManojKumar2920/Kairos-Chatbot/image?description=1&descriptionEditable=Kairos%20AI%2C%20an%20open-source%20AI%20chatbot%20designed%20to%20assist%20with%20programming-related%20questions%20and%20problems.&font=Inter&forks=1&issues=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light" alt="Kairos-Chatbot" width="auto" height="320" />
 
 # Kairos AI
 
