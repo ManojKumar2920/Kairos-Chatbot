@@ -1,3 +1,10 @@
+<a href="https://github.com/ManojKumar2920/Kairos-Chatbot">
+  <img
+    src="https://img.shields.io/badge/%E2%9C%93-Social%20Preview-blue"
+    alt="This Repository uses a generated Social Preview from @ManojKumar2920/Kairos/Chatbot"
+  />
+</a>
+
 # Kairos AI
 
 Welcome to **Kairos AI**, an open-source AI chatbot designed to assist with programming-related questions and problems. Kairos AI leverages the powerful Gemini language model and is built with Next.js for a seamless user experience.
