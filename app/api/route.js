@@ -10,7 +10,7 @@ export const POST = async (req, res) => {
       return new Response(JSON.stringify({ error: 'Prompt is required' }), { status: 400 });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY; // Accessing environment variable
+    const apiKey = "AIzaSyDJsvNHNAKC3VdKBJ11WKE1q0_6eF_a2XM" // Accessing environment variable
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
