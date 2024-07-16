@@ -1,15 +1,20 @@
+// api/route.js
+import axios from 'axios';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export const POST = async (req,res) => {
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
   try {
-    const body = await req.json();
-    const { prompt } = body;
-    
+    const { prompt } = req.body;
+
     if (!prompt) {
-      return new Response(JSON.stringify({ error: 'Prompt is required' }), { status: 400 });
+      return res.status(400).json({ error: 'Prompt is required' });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY; // Accessing environment variable
+    const apiKey = process.env.GEMINI_API_KEY;
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
@@ -21,9 +26,16 @@ export const POST = async (req,res) => {
     const response = await result.response;
     const text = await response.text();
 
-    return new Response(JSON.stringify({ text }), { status: 200 });
+    // Example of using Axios to make a request to an external API (kairos-ai.vercel.app)
+    const externalApiResponse = await axios.post('https://kairos-ai.vercel.app/api', { prompt }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return res.status(200).json({ text, externalData: externalApiResponse.data });
   } catch (error) {
     console.error("Error generating text:", error);
-    return new Response(JSON.stringify({ error: 'Error generating text' }), { status: 500 });
+    return res.status(500).json({ error: 'Error generating text' });
   }
-};
+}
