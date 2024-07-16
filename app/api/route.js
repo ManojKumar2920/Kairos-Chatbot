@@ -1,23 +1,15 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-
+export const POST = async (req,res) => {
   try {
-    const body = await req.body;
+    const body = await req.json();
     const { prompt } = body;
-
+    
     if (!prompt) {
-      return res.status(400).json({ error: 'Prompt is required' });
+      return new Response(JSON.stringify({ error: 'Prompt is required' }), { status: 400 });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
-
-    if (!apiKey) {
-      return res.status(500).json({ error: 'API Key not found' });
-    }
+    const apiKey = process.env.GEMINI_API_KEY; // Accessing environment variable
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
@@ -29,9 +21,11 @@ export default async function handler(req, res) {
     const response = await result.response;
     const text = await response.text();
 
-    return res.send({ text }); // Return JSON response with text content
+    return new Response(JSON.stringify({ text }), { status: 200 });
   } catch (error) {
     console.error("Error generating text:", error);
-    return res.status(500).json({ error: 'Error generating text' });
+    return new Response(JSON.stringify({ error: 'Error generating text' }), { status: 500 });
   }
-}
+};
+
+
