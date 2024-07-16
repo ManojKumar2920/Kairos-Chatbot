@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Spinner from "@/components/Spinner/Spinner";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -25,12 +25,18 @@ const Page = () => {
     textarea.style.height = "40px";
     textarea.style.height = `${textarea.scrollHeight}px`;
     setPrompt(e.target.value);
+    
+    // Handle Enter key press
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevent default newline behavior
+      handleSubmit();
+    }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
     if (!prompt.trim()) return;
   
+    setPrompt(""); // Clear the text area after submission
     setIsLoading(true);
     setChatHistory([...chatHistory, { sender: "user", text: prompt }]); // Store user message
   
@@ -162,25 +168,26 @@ const Page = () => {
       </div>
       <div className="fixed bottom-0 left-0 right-0 flex justify-center pb-4 bg-[#18181a] pt-1">
         <div className="w-screen flex justify-center flex-col items-center gap-3">
-          <form
+          <div
             className="border p-2 rounded-md border-gray-800 flex justify-around w-4/5 bg-[#111113] h-auto"
-            onSubmit={handleSubmit}
           >
             <textarea
               type="text"
               placeholder="Enter your prompt here.."
               className="bg-inherit w-11/12 p-2 focus:outline-none max-w-full max-h-48 h-10 resize-none"
               onInput={handleInput}
+              onKeyDown={handleInput} 
               value={prompt}
             ></textarea>
             <button
-              type="submit"
+              type="button"
               className="submit-button"
               disabled={isLoading}
+              onClick={handleSubmit} // Handle form submission on button click
             >
               {isLoading ? <Spinner /> : <Send size={24} />}
             </button>
-          </form>
+          </div>
 
           <p className="text-[10px] text-gray-500 flex gap-1">
             Open Source AI Chatbot built with
