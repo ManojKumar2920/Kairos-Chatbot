@@ -11,7 +11,9 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { FiCopy } from "react-icons/fi";
-import { Toaster, toast } from 'sonner'
+import { Toaster, toast } from 'sonner';
+import axios from 'axios';
+
 
 const Page = () => {
   const [prompt, setPrompt] = useState("");
@@ -41,27 +43,19 @@ const Page = () => {
     setChatHistory([...chatHistory, { sender: "user", text: prompt }]); // Store user message
   
     try {
-      const res = await fetch("/api/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
+      const response = await axios.post('/api', { prompt }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
   
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-  
-      const data = await res.json();
-  
-      // Preprocess AI response to add line breaks for better spacing
-      const aiResponse = data.text.replace(/([.?!])\s*(?=[A-Z])/g, "$1\n");
+      const aiResponse = response.data.text.replace(/([.?!])\s*(?=[A-Z])/g, "$1\n");
   
       setChatHistory([
         ...chatHistory,
         { sender: "user", text: prompt },
         { sender: "AI", text: aiResponse },
-      ]); // Store AI response
-      setPrompt(""); // Clear the text area after submission
+      ]);
     } catch (error) {
       console.error("Error fetching the API:", error);
       setError("Error: " + error.message);
@@ -70,6 +64,7 @@ const Page = () => {
       scrollToBottom();
     }
   };
+  
   
 
   const scrollToBottom = () => {
