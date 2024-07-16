@@ -43,7 +43,7 @@ const Page = () => {
     setChatHistory([...chatHistory, { sender: "user", text: prompt }]); // Store user message
   
     try {
-      const response = await axios.post('/api', { prompt }, {
+      const response = await axios.post('https://kairos-ai.vercel.app/api', { prompt }, {
         headers: {
           'Content-Type': 'application/json',
         },
